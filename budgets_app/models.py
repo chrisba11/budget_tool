@@ -23,8 +23,61 @@ class Budget(models.Model):
         default=0
     )
 
-    remaining_balance = models.FloatField(
-        
+    remaining_budget = models.FloatField(
+
     )
 
-# Create your models here.
+    @property
+    def balance(self):
+        self.transactions
+
+    def __repr__(self):
+        return '<Budget: {} @ {}>'.format(self.name, self.id)
+
+    def __str__(self):
+        return '{} @ {}'.format(self.name, self.id)
+
+
+class Transactions(models.Model):
+    """
+
+    """
+    OPTIONS = (
+        ('+', 'Withdrawal'),
+        ('-', 'Deposit'),
+    )
+
+    budget = models.ForeignKey(
+        Budget,
+        on_delete=models.CASCADE,
+        related_name='transactions',
+        null=False
+    )
+
+    trans_type = models.CharField(
+        max_length=16,
+        choices=OPTIONS,
+        default='Withdrawal',
+    )
+
+    amount = models.FloatField(
+        max_length=255,
+        null=False,
+    )
+
+    description = models.CharField(
+        max_length=255,
+        default='No Description Provided',
+    )
+
+    def __repr__(self):
+        return '<Transaction: {} of {}>'.format(
+            self.trans_type,
+            self.amount,
+            )
+
+    def __str__(self):
+        return '{}  {}'.format(
+            self.trans_type,
+            self.amount,
+            )
