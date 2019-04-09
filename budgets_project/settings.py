@@ -31,13 +31,14 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split()
 # Application definition
 
 INSTALLED_APPS = [
+    'budgets_project',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'budgets_project',
+    'budgets_app',
 ]
 
 MIDDLEWARE = [
