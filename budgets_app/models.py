@@ -23,22 +23,21 @@ class Budget(models.Model):
         default=0
     )
 
-    remaining_budget = models.FloatField(
-
-    )
-
     @property
-    def balance(self):
-        self.transactions
+    def remaining_budget(self):
+        sum = 0
+        for t in self.transactions:
+            sum += t.amount
+        return self.total_budget - sum
 
-    def __repr__(self):
+    def __repr__(self)    :
         return '<Budget: {} @ {}>'.format(self.name, self.id)
 
     def __str__(self):
         return '{} @ {}'.format(self.name, self.id)
 
 
-class Transactions(models.Model):
+class Transaction(models.Model):
     """
 
     """
