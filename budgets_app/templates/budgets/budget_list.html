@@ -1,0 +1,11 @@
+{% extends "generic/base.html" %}
+
+{% block content %}
+  <div class="budget_list">
+    {% for budget in budgets %}
+      <div class="status_{{ budget }}">
+        <p><a href="{% url "budget_detail" id=budget.id %}">{{ budget.title }}</a></p>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock content %}
